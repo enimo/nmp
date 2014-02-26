@@ -9,7 +9,7 @@ if [ $(id -u) != "0" ]; then
 fi
 
 printf "=========================================================================\n"
-printf "Manager Nginx+MySQL+PHP+FPM, based on LNMP.\n"
+printf "Manager Nginx+MySQL+PHP+FPM.\n"
 printf "Usage: /root/nmp {start|stop|reload|restart|kill|status}\n"
 printf "=========================================================================\n"
 

@@ -21,7 +21,7 @@ cur_dir=$(pwd)
 
 	mysqlrootpwd="root"
 	echo "Please input the root password of mysql:"
-	read -p "(Default password: root):" mysqlrootpwd
+	read -p "(Default mysql password: root):" mysqlrootpwd
 	if [ "$mysqlrootpwd" = "" ]; then
 		mysqlrootpwd="root"
 	fi
@@ -37,7 +37,7 @@ echo "==========================="
 	#InnoDB 给 MySQL 提供了具有事务(transaction)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)、多版本并发控制(multi-versioned concurrency control)的事务安全(transaction-safe (ACID compliant))型表。
 	#InnoDB是MySQL下使用最广泛的引擎，它是基于MySQL的高可扩展性和高性能存储引擎，从5.5版本开始，它已经成为了默认引擎。
 	echo "Do you want to install the InnoDB Storage Engine?"
-	read -p "(Default yes,if you want please input: y ,if not please press the enter button):" installinnodb
+	read -p "(Default yes,if you want please input: y ,if not please press input: n):" installinnodb
 
 	case "$installinnodb" in
 	y|Y|Yes|YES|yes|yES|yEs|YeS|yeS)
@@ -209,13 +209,6 @@ if [ -s mcrypt-2.6.8.tar.gz ]; then
   wget -c http://soft.vpser.net/web/mcrypt/mcrypt-2.6.8.tar.gz
 fi
 
-
-if [ -s p.tar.gz ]; then
-  echo "p.tar.gz [found]"
-  else
-  echo "Error: p.tar.gz not found!!!download now......"
-  wget -c http://soft.vpser.net/prober/p.tar.gz
-fi
 
 if [ -s autoconf-2.13.tar.gz ]; then
   echo "autoconf-2.13.tar.gz [found]"
@@ -523,15 +516,18 @@ cat >/home/bae/wwwroot/main/pt.php<<eof
 phpinfo();
 ?>
 eof
+chmod 755 /home/bae/wwwroot/main/pt.php
 
-#安装PHP探针
+#复制PHP探针
 echo "Copy PHP Prober..."
 cd $cur_dir
-tar zxvf p.tar.gz
-cp p.php /home/bae/wwwroot/main/p.php
+cp conf/p.php /home/bae/wwwroot/main/p.php
+chmod 755 /home/bae/wwwroot/main/p.php
 
 #默认首页静态页
 cp conf/index.html /home/bae/wwwroot/main/index.html
+chmod 755 /home/bae/wwwroot/main/index.html
+chown www:www -R /home/bae/wwwroot/main/
 
 echo "============================Install PHPMyAdmin================================="
 tar zxf phpMyAdmin-3.4.8-all-languages.tar.gz
