@@ -1,0 +1,20 @@
+
+Nginx状态管理：/etc/init.d/nginx {start|stop|reload|restart}
+PHP-FPM状态管理：/etc/init.d/php-fpm {start|stop|quit|restart|reload|logrotate}
+MySQL状态管理：/etc/init.d/mysql {start|stop|restart|reload|force-reload|status}
+phpinfo : http://yourIP/phpinfo.php
+phpMyAdmin : http://yourIP/phpmyadmin/
+Prober探针 : http://yourIP/p.php"
+
+
+NMP相关目录：
+mysql :   /usr/local/mysql
+php :     /usr/local/php
+nginx :   /usr/local/nginx
+网站目录 :     /home/bae/wwwroot
+Nginx日志目录：/home/bae/wwwlogs
+
+配置文件：
+Nginx主配置文件：/usr/local/nginx/conf/nginx.conf
+MySQL配置文件：/etc/my.cnf
+PHP配置文件：/usr/local/php/etc/php.ini
