@@ -1,8 +1,7 @@
-# NMP (Nginx+MySQL+PHP+etc)
+# NMP
 
-It's a script help you install nginx+mysql+php+fpm+etc in Linux.
-
-Special for CentOS/RedHat, the rest OS without test. And It's not NPM(Nodejs package manager).
+NMP just another web server shell script which integrated Nginx, MySQL, PHP and some other open source server package. It can help you install nginx+mysql+php+fpm+etc service easily in Linux.
+Special for CentOS/RedHat, the rest OS without test. P.S.: It's not NPM(Nodejs package manager).
 
 
 
@@ -17,7 +16,7 @@ git clone https://github.com/enimo/nmp.git
 ```
 And then execute "sh install.sh" as root user.
 
-### Lanuch info
+### Launch info
 
 ```
 Nginx Launch：/etc/init.d/nginx {start|stop|reload|restart}
