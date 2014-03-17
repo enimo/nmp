@@ -491,6 +491,7 @@ ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 rm -f /usr/local/nginx/conf/nginx.conf
 cd $cur_dir
 cp conf/nginx.conf /usr/local/nginx/conf/nginx.conf
+cp conf/vhost/ -rf /usr/local/nginx/conf/
 #cp conf/wordpress.conf /usr/local/nginx/conf/wordpress.conf
 
 mv /usr/local/nginx/conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf.bak
