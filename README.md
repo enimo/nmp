@@ -1,7 +1,8 @@
 # NMP
 
 NMP just another web server shell script which integrated Nginx, MySQL, PHP and some other open source server package. It can help you install nginx+mysql+php+fpm+etc service easily in Linux.
-Special for CentOS/RedHat, the rest OS without test. P.S.: It's not NPM(Nodejs package manager).
+
+Special for CentOS/RedHat, the rest OS without test. P.S.: It's not NPM(Nodejs package manager)^^
 
 
 
@@ -27,7 +28,7 @@ phpMyAdmin : http://yourIP/phpmyadmin/
 Prober Test : http://yourIP/p.php
 ```
 
-### Install Directory：
+### Installed Directory
 
 ```
 mysql :   /usr/local/mysql
@@ -37,7 +38,7 @@ Webroot Doc :     /home/bae/wwwroot
 Nginx Log Dir：/home/bae/wwwlogs
 ```
 
-### Config files：
+### Config files
 
 ```
 Nginx main conf：/usr/local/nginx/conf/nginx.conf
