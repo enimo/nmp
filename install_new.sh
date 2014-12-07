@@ -377,7 +377,7 @@ echo "============================MySQL 5.5.26 install completed================
 }
 
 
-function InstallPHP53()
+function InstallPHP55()
 {
 echo "============================Install PHP 5.5.18================================"
 cd $cur_dir
