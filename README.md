@@ -8,6 +8,15 @@ Special for CentOS/RedHat, the rest OS without test. P.S.: It's not NPM(Nodejs p
 
 ## Usage
 
+### PreInstall
+
+You need add users below:
+
+```
+useradd bae;
+useradd www;
+```
+
 ### Install
 
 You need clone this repos to your local directory first:
