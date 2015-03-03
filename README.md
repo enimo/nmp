@@ -32,7 +32,7 @@ And then execute "sh install.sh" as root user.
 Nginx Launch：/etc/init.d/nginx {start|stop|reload|restart}
 PHP-FPM Launch：/etc/init.d/php-fpm {start|stop|quit|restart|reload|logrotate}
 MySQL Launch：/etc/init.d/mysql {start|stop|restart|reload|force-reload|status}
-PHPInfo Access: http://yourIP/phpinfo.php
+PHPInfo Access: http://yourIP/pt.php
 phpMyAdmin : http://yourIP/phpmyadmin/
 Prober Test : http://yourIP/p.php
 ```

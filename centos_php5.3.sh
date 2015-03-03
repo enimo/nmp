@@ -605,7 +605,7 @@ if [ "$isnginx" = "ok" ] && [ "$ismysql" = "ok" ] && [ "$isphp" = "ok" ]; then
 	echo "Usage: /root/nmp {start|stop|reload|restart|kill|status}\n"
 	echo "=========================================================================\n"
 	echo "default mysql root password:$mysqlrootpwd"
-	echo "phpinfo : http://yourIP/phpinfo.php"
+	echo "phpinfo : http://yourIP/pt.php"
 	echo "phpMyAdmin : http://yourIP/phpmyadmin/"
 	echo "Prober : http://yourIP/p.php"
 
