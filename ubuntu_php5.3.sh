@@ -830,18 +830,6 @@ cp conf/nginx.conf /usr/local/nginx/conf/nginx.conf
 cp conf/vhost -rf /usr/local/nginx/conf/
 
 # cp conf/wordpress.conf /usr/local/nginx/conf/wordpress.conf
-
-# cp conf/dabr.conf /usr/local/nginx/conf/dabr.conf
-# cp conf/discuz.conf /usr/local/nginx/conf/discuz.conf
-# cp conf/sablog.conf /usr/local/nginx/conf/sablog.conf
-# cp conf/typecho.conf /usr/local/nginx/conf/typecho.conf
-# cp conf/discuzx.conf /usr/local/nginx/conf/discuzx.conf
-# cp conf/wp2.conf /usr/local/nginx/conf/wp2.conf
-# cp conf/phpwind.conf /usr/local/nginx/conf/phpwind.conf
-# cp conf/shopex.conf /usr/local/nginx/conf/shopex.conf
-# cp conf/dedecms.conf /usr/local/nginx/conf/dedecms.conf
-# cp conf/drupal.conf /usr/local/nginx/conf/drupal.conf
-# cp conf/ecshop.conf /usr/local/nginx/conf/ecshop.conf
 # cp conf/pathinfo.conf /usr/local/nginx/conf/pathinfo.conf
 
 mv /usr/local/nginx/conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf.bak
@@ -871,7 +859,6 @@ else
 fi
 cp conf/phpmyadmin.config.inc.php /home/bae/wwwroot/main/phpmyadmin/config.inc.php
 # cp conf/config.inc.php /home/wwwroot/default/phpmyadmin/config.inc.php
-# sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/wwwroot/default/phpmyadmin/config.inc.php
 mkdir /home/bae/wwwroot/main/phpmyadmin/upload/
 mkdir /home/bae/wwwroot/main/phpmyadmin/save/
 chmod 755 -R /home/bae/wwwroot/main/phpmyadmin/
@@ -881,7 +868,7 @@ echo "==================== phpMyAdmin install completed ======================"
 echo "Copy PHP Prober..."
 tar zxvf p.tar.gz
 cp p.php /home/bae/wwwroot/main/p.php
-# cp conf/index.html /home/wwwroot/default/index.html
+cp conf/index.html /home/bae/wwwroot/main/index.html
 }
 
 AddAndStartup()
