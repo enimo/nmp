@@ -9,13 +9,11 @@ if [ $(id -u) != "0" ]; then
 fi
 
 clear
-echo "========================================================================="
-echo "LNMP V1.1 for Ubuntu Linux Server, Written by Licess "
-echo "========================================================================="
-echo "A tool to auto-compile & install Nginx+MySQL+PHP on Linux "
-echo ""
-echo "For more information please visit http://www.lnmp.org/"
-echo "========================================================================="
+printf "=========================================================================\n"
+printf "Manager Nginx+MySQL+PHP+FPM, based on LNMP.\n"
+printf "Support Ubuntu now...\n"
+printf "=========================================================================\n"
+
 cur_dir=$(pwd)
 
 #set mysql root password
@@ -796,14 +794,17 @@ echo "============================Install Nginx=================================
 groupadd www
 useradd -s /sbin/nologin -g www www
 
-mkdir -p /home/wwwroot/default
-chmod +w /home/wwwroot/default
-mkdir -p /home/wwwlogs
-chmod 777 /home/wwwlogs
-touch /home/wwwlogs/nginx_error.log
+adduser bae
+
+
+mkdir -p /home/bae/wwwroot/main
+chmod +w /home/bae/wwwroot/main
+mkdir -p /home/bae/wwwlogs
+chmod 777 /home/bae/wwwlogs
+touch /home/bae/wwwlogs/nginx_error.log
 
 cd $cur_dir
-chown -R www:www /home/wwwroot/default
+chown -R www:www /home/wwwroot/main
 
 # nginx
 cd $cur_dir
@@ -826,26 +827,33 @@ ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 cd $cur_dir
 rm -f /usr/local/nginx/conf/nginx.conf
 cp conf/nginx.conf /usr/local/nginx/conf/nginx.conf
-cp conf/dabr.conf /usr/local/nginx/conf/dabr.conf
-cp conf/discuz.conf /usr/local/nginx/conf/discuz.conf
-cp conf/sablog.conf /usr/local/nginx/conf/sablog.conf
-cp conf/typecho.conf /usr/local/nginx/conf/typecho.conf
-cp conf/wordpress.conf /usr/local/nginx/conf/wordpress.conf
-cp conf/discuzx.conf /usr/local/nginx/conf/discuzx.conf
-cp conf/wp2.conf /usr/local/nginx/conf/wp2.conf
-cp conf/phpwind.conf /usr/local/nginx/conf/phpwind.conf
-cp conf/shopex.conf /usr/local/nginx/conf/shopex.conf
-cp conf/dedecms.conf /usr/local/nginx/conf/dedecms.conf
-cp conf/drupal.conf /usr/local/nginx/conf/drupal.conf
-cp conf/ecshop.conf /usr/local/nginx/conf/ecshop.conf
-cp conf/pathinfo.conf /usr/local/nginx/conf/pathinfo.conf
+cp conf/vhost -rf /usr/local/nginx/conf/
+
+# cp conf/wordpress.conf /usr/local/nginx/conf/wordpress.conf
+
+# cp conf/dabr.conf /usr/local/nginx/conf/dabr.conf
+# cp conf/discuz.conf /usr/local/nginx/conf/discuz.conf
+# cp conf/sablog.conf /usr/local/nginx/conf/sablog.conf
+# cp conf/typecho.conf /usr/local/nginx/conf/typecho.conf
+# cp conf/discuzx.conf /usr/local/nginx/conf/discuzx.conf
+# cp conf/wp2.conf /usr/local/nginx/conf/wp2.conf
+# cp conf/phpwind.conf /usr/local/nginx/conf/phpwind.conf
+# cp conf/shopex.conf /usr/local/nginx/conf/shopex.conf
+# cp conf/dedecms.conf /usr/local/nginx/conf/dedecms.conf
+# cp conf/drupal.conf /usr/local/nginx/conf/drupal.conf
+# cp conf/ecshop.conf /usr/local/nginx/conf/ecshop.conf
+# cp conf/pathinfo.conf /usr/local/nginx/conf/pathinfo.conf
+
+mv /usr/local/nginx/conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf.bak
+cp conf/fcgi.conf /usr/local/nginx/conf/fcgi.conf
+
 }
 
 CreatPHPTools()
 {
 	echo "Create PHP Info Tool..."
 #phpinfo
-cat >/home/wwwroot/default/phpinfo.php<<eof
+cat >/home/bae/wwwroot/main/pt.php<<eof
 <?
 phpinfo();
 ?>
@@ -856,24 +864,24 @@ cd $cur_dir
 #phpmyadmin
 if [ "$isinstallphp53" = "n" ]; then
 	tar zxf phpmyadmin-latest.tar.gz
-	mv phpMyAdmin-3.4.8-all-languages /home/wwwroot/default/phpmyadmin
+	mv phpMyAdmin-3.4.8-all-languages /home/bae/wwwroot/main/phpmyadmin
 else
 	tar zxf phpMyAdmin-lasest.tar.gz
-	mv phpMyAdmin-*-all-languages /home/wwwroot/default/phpmyadmin
+	mv phpMyAdmin-*-all-languages /home/bae/wwwroot/main/phpmyadmin
 fi
-cp conf/config.inc.php /home/wwwroot/default/phpmyadmin/config.inc.php
-sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/wwwroot/default/phpmyadmin/config.inc.php
-mkdir /home/wwwroot/default/phpmyadmin/upload/
-mkdir /home/wwwroot/default/phpmyadmin/save/
-chmod 755 -R /home/wwwroot/default/phpmyadmin/
-chown www:www -R /home/wwwroot/default/phpmyadmin/
+cp conf/phpmyadmin.config.inc.php /home/bae/wwwroot/main/phpmyadmin/config.inc.php
+# cp conf/config.inc.php /home/wwwroot/default/phpmyadmin/config.inc.php
+# sed -i 's/LNMPORG/LNMP.org'$RANDOM'VPSer.net/g' /home/wwwroot/default/phpmyadmin/config.inc.php
+mkdir /home/bae/wwwroot/main/phpmyadmin/upload/
+mkdir /home/bae/wwwroot/main/phpmyadmin/save/
+chmod 755 -R /home/bae/wwwroot/main/phpmyadmin/
+chown www:www -R /home/bae/wwwroot/main/phpmyadmin/
 echo "==================== phpMyAdmin install completed ======================"
 
 echo "Copy PHP Prober..."
 tar zxvf p.tar.gz
-cp p.php /home/wwwroot/default/p.php
-
-cp conf/index.html /home/wwwroot/default/index.html
+cp p.php /home/bae/wwwroot/main/p.php
+# cp conf/index.html /home/wwwroot/default/index.html
 }
 
 AddAndStartup()
@@ -891,9 +899,9 @@ fi
 update-rc.d -f nginx defaults
 update-rc.d -f php-fpm defaults
 
-cd $cur_dir
-cp vhost.sh /root/vhost.sh
-chmod +x /root/vhost.sh
+# cd $cur_dir
+# cp vhost.sh /root/vhost.sh
+# chmod +x /root/vhost.sh
 
 if [ "$isinstallmysql55" = "md" ]; then
 	sed -i 's:/etc/init.d/mysql:/etc/init.d/mariadb:g' /root/lnmp
@@ -955,52 +963,47 @@ if [ -s /usr/local/php/sbin/php-fpm ] && [ -s /usr/local/php/etc/php.ini ] && [ 
   echo "Error: /usr/local/php not found!!!PHP install failed."
 fi
 if [ "$isnginx" = "ok" ] && [ "$ismysql" = "ok" ] && [ "$isphp" = "ok" ]; then
-echo "Install lnmp 1.1 completed! enjoy it."
-echo "========================================================================="
-echo "LNMP V1.1 for Ubuntu Linux Server, Written by Licess "
-echo "========================================================================="
-echo ""
-echo "For more information please visit http://www.lnmp.org/"
-echo ""
-echo "lnmp status manage: /root/lnmp {start|stop|reload|restart|kill|status}"
-echo "default mysql root password:$mysqlrootpwd"
-echo "phpinfo : http://yourIP/phpinfo.php"
-echo "phpMyAdmin : http://yourIP/phpmyadmin/"
-echo "Prober : http://yourIP/p.php"
-echo "Add VirtualHost : /root/vhost.sh"
-echo ""
-echo "The path of some dirs:"
-echo "mysql dir:   /usr/local/mysql"
-echo "php dir:     /usr/local/php"
-echo "nginx dir:   /usr/local/nginx"
-echo "web dir :     /home/wwwroot/default"
-echo ""
-echo "========================================================================="
-/root/lnmp status
-netstat -ntl
+	echo "Install NMP completed."
+	echo "========================================================================="
+	echo "Usage: /root/nmp {start|stop|reload|restart|kill|status}\n"
+	echo "=========================================================================\n"
+	echo "default mysql root password:$mysqlrootpwd"
+	echo "phpinfo : http://yourIP/pt.php"
+	echo "phpMyAdmin : http://yourIP/phpmyadmin/"
+	echo "Prober : http://yourIP/p.php"
+
+	echo ""
+	echo "The path of some dirs:"
+	echo "mysql dir:   /usr/local/mysql, config dir: /usr/local/nginx/conf/nginx.conf"
+	echo "php dir:     /usr/local/php, config dir: /usr/local/php/etc/php.ini"
+	echo "nginx dir:   /usr/local/nginx, config dir: /usr/local/nginx/conf/nginx.conf"
+	echo "web dir :     /home/bae/wwwroot/main"
+	echo ""
+	echo "========================================================================="
+	/root/lnmp status
+	netstat -ntl
 else
-echo "Sorry,Failed to install LNMP!"
-echo "Please visit http://bbs.vpser.net/forum-25-1.html feedback errors and logs."
-echo "You can download /root/lnmp-install.log from your server,and upload lnmp-install.log to LNMP Forum."
+	echo "NMP install Failed!"
+	echo "Check /root/nmp-install.log for debug."
 fi
 }
 
-InitInstall 2>&1 | tee /root/lnmp-install.log
-CheckAndDownloadFiles 2>&1 | tee -a /root/lnmp-install.log
-InstallDependsAndOpt 2>&1 | tee -a /root/lnmp-install.log
+InitInstall 2>&1 | tee /root/nmp-install.log
+CheckAndDownloadFiles 2>&1 | tee -a /root/nmp-install.log
+InstallDependsAndOpt 2>&1 | tee -a /root/nmp-install.log
 if [ "$isinstallmysql55" = "n" ]; then
-	InstallMySQL51 2>&1 | tee -a /root/lnmp-install.log
+	InstallMySQL51 2>&1 | tee -a /root/nmp-install.log
 elif [ "$isinstallmysql55" = "y" ]; then
-	InstallMySQL55 2>&1 | tee -a /root/lnmp-install.log
+	InstallMySQL55 2>&1 | tee -a /root/nmp-install.log
 else
-	InstallMariaDB 2>&1 | tee -a /root/lnmp-install.log
+	InstallMariaDB 2>&1 | tee -a /root/nmp-install.log
 fi
 if [ "$isinstallphp53" = "n" ]; then
-	InstallPHP52 2>&1 | tee -a /root/lnmp-install.log
+	InstallPHP52 2>&1 | tee -a /root/nmp-install.log
 else
-	InstallPHP53 2>&1 | tee -a /root/lnmp-install.log
+	InstallPHP53 2>&1 | tee -a /root/nmp-install.log
 fi
-InstallNginx 2>&1 | tee -a /root/lnmp-install.log
-CreatPHPTools 2>&1 | tee -a /root/lnmp-install.log
-AddAndStartup 2>&1 | tee -a /root/lnmp-install.log
-CheckInstall 2>&1 | tee -a /root/lnmp-install.log
+InstallNginx 2>&1 | tee -a /root/nmp-install.log
+CreatPHPTools 2>&1 | tee -a /root/nmp-install.log
+AddAndStartup 2>&1 | tee -a /root/nmp-install.log
+CheckInstall 2>&1 | tee -a /root/nmp-install.log
