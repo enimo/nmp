@@ -13,8 +13,8 @@ Special for CentOS/RedHat, the rest OS without test. P.S.: It's not NPM(Nodejs p
 You need add users below:
 
 ```
-useradd bae;
-useradd www;
+adduser bae;
+adduser www;
 ```
 
 ### Install
