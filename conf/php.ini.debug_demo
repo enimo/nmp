@@ -1,0 +1,14 @@
+#php 日志相关
+
+# php-fpm日志（在php-fpm.conf中配置）：
+# 默认：var/log/php-fpm.log
+
+# php开启页面显示日志，将display error打开即可(默认关闭)：
+display_errors = On
+
+# php开启写日志在php.ini中配置(默认关闭)：：
+log_errors = On
+error_log = /home/bae/wwwlogs/php-error.log
+# (由于权限问题，php日志建议放置于bae目录下)
+
+# 重启php-fpm之后会生效

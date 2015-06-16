@@ -3,15 +3,16 @@ pid = /usr/local/php/var/run/php-fpm.pid
 error_log = /usr/local/php/var/log/php-fpm.log
 log_level = notice
 
-[www]
+[bae]
+# 由于可能的代码读写权限问题，使用bae账户运行
 listen = /tmp/php-cgi.sock
-user = www
-group = www
+user = bae
+group = bae
 
 listen.backlog = -1
 listen.allowed_clients = 127.0.0.1
-listen.owner = www
-listen.group = www
+listen.owner = bae
+listen.group = bae
 listen.mode = 0666
 
 pm = dynamic
